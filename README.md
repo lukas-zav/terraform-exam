@@ -59,9 +59,9 @@ terraform-exam/
 - `worker-01` has `enabled: false` — it should not produce any resource.
 - `bastion-01` does **not** have a `security_group_ids` key at all — your code must not crash.
 
-## Terraform features you will need
+## Terraform features you might need
 
-Read the documentation for these — they are all required:
+Read the documentation for these:
 
 | Feature | Documentation |
 |---|---|
