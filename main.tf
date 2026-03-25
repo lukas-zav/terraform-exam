@@ -9,8 +9,8 @@ locals {
   enabled_instances = {} # TODO
 }
 
-// Step 3 — Create one resource per enabled instance.
-// Use for_each so each resource is keyed by instance name.
+// Step 3 — Use for_each to dynamically create an instance for each entry in the enabled map.
+// This single resource block will produce multiple instances based on the map keys.
 resource "terraform_data" "instance" {
   # TODO
 }

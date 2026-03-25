@@ -22,7 +22,7 @@ The input data is a JSON file describing instances, subnets, security groups, an
 | `versions.tf` | ✅ Provided — do not modify |
 | `variables.tf` | 🔧 Define the variable type to match `inputs.json` |
 | `main.tf` | 🔧 Implement the module logic |
-| `outputs.tf` | 🔧 Implement all outputs |
+| `outputs.tf` | 🔧 Implement the two outputs |
 
 ## What the module should do
 
@@ -32,8 +32,14 @@ The input data is a JSON file describing instances, subnets, security groups, an
    - A combined list of security groups (common + per-instance)
    - A combined map of tags (common + per-instance + `Name`)
 3. Filter out disabled instances (`enabled = false`).
-4. Create one `terraform_data.instance` per enabled instance.
-5. Create one `terraform_data.eip` per enabled instance that has `associate_eip = true`.
+4. Create one `terraform_data.instance` resource using `for_each` over the enabled instances.
+
+## Outputs
+
+| Output | Description |
+|---|---|
+| `enabled_instances` | Map of all enabled instances with their enriched fields |
+| `instance_ids` | Map of `terraform_data` resource IDs by instance name |
 
 ## Important edge cases in inputs.json
 
@@ -65,12 +71,11 @@ terraform validate
 terraform plan
 ```
 
-Expected plan result: **5 resources** (3 instances + 2 EIPs).
+Expected plan result: **3 resources** (3 enabled instances).
 
 ## Rules
 
 - Do **not** use the AWS provider
 - Do **not** modify files under `example/`
 - Do **not** hardcode instance names or counts
-- You **may** use the Terraform documentation and any search engine
-- Time limit: **90 minutes**
+- You **may** use the Terraform documentation, any search engine or AI
