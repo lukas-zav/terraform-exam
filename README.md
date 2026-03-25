@@ -7,6 +7,18 @@ This task evaluates your ability to learn and apply Terraform concepts independe
 
 You are encouraged to use the [Terraform documentation](https://developer.hashicorp.com/terraform/language) freely — this is not a memory test.
 
+## Getting started
+
+1. **Fork** this repository to your own GitHub account.
+2. **Clone** your fork locally.
+3. Create a new branch for your work:
+   ```
+   git checkout -b solution/<your-name>
+   ```
+4. Implement the module (see instructions below).
+5. Commit and push your changes.
+6. Open a **Pull Request** from your branch back to the original repository's `main` branch.
+
 ## Goal
 
 Build a reusable Terraform module that models an EC2 fleet using `terraform_data` resources.
