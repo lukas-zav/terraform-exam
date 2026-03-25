@@ -11,10 +11,6 @@ You are encouraged to use the [Terraform documentation](https://developer.hashic
 
 1. **Fork** this repository to your own GitHub account.
 2. **Clone** your fork locally.
-3. Create a new branch for your work:
-   ```
-   git checkout -b solution/<your-name>
-   ```
 4. Implement the module (see instructions below).
 5. Commit and push your changes.
 6. Open a **Pull Request** from your branch back to the original repository's `main` branch.
