@@ -12,17 +12,22 @@ You are encouraged to use the [Terraform documentation](https://developer.hashic
 Build a reusable Terraform module that models an EC2 fleet using `terraform_data` resources.
 The input data is a JSON file describing instances, subnets, security groups, and tags.
 
-## What is already provided
+## Project structure
 
-| File | Status |
-|---|---|
-| `example/inputs.json` | ✅ Provided — do not modify |
-| `example/main.tf` | ✅ Provided — do not modify |
-| `example/outputs.tf` | ✅ Provided — do not modify |
-| `versions.tf` | ✅ Provided — do not modify |
-| `variables.tf` | 🔧 Define the variable type to match `inputs.json` |
-| `main.tf` | 🔧 Implement the module logic |
-| `outputs.tf` | 🔧 Implement the two outputs |
+```
+terraform-exam/
+├── example/
+│   ├── inputs.json        ← do not modify
+│   ├── main.tf            ← do not modify
+│   └── outputs.tf         ← do not modify
+├── modules/
+│   └── ec2_fleet/
+│       ├── main.tf        ← 🔧 implement the module logic
+│       ├── outputs.tf     ← 🔧 implement the two outputs
+│       ├── variables.tf   ← 🔧 define the variable type
+│       └── versions.tf    ← do not modify
+└── README.md
+```
 
 ## What the module should do
 
@@ -32,7 +37,7 @@ The input data is a JSON file describing instances, subnets, security groups, an
    - A combined list of security groups (common + per-instance)
    - A combined map of tags (common + per-instance + `Name`)
 3. Filter out disabled instances (`enabled = false`).
-4. Create one `terraform_data.instance` resource using `for_each` over the enabled instances.
+4. Use a single `terraform_data.instance` resource block with `for_each` to dynamically create one instance per entry in the enabled map.
 
 ## Outputs
 

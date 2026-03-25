@@ -3,8 +3,7 @@ locals {
 }
 
 module "ec2_fleet" {
-  source = "../"
+  source = "../modules/ec2_fleet"
 
   config = local.config
 }
-
