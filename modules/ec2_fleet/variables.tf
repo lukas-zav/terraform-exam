@@ -10,5 +10,18 @@ Hints:
 
 variable "config" {
   description = "Decoded content of inputs.json"
-  type        = any # TODO: replace with proper type
+  type = object({
+    subnet_ids                = list(string)
+    common_security_group_ids = list(string)
+    common_tags               = map(string)
+    instances = map(object({
+      ami                = string
+      instance_type      = string
+      subnet_index       = number
+      enabled            = bool
+      associate_eip      = bool
+      security_group_ids = optional(list(string), [])
+      tags               = optional(map(string), {})
+    }))
+  })
 }
